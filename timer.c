@@ -32,13 +32,6 @@ int main(int argc, char *argv[]) {
     struct termios original;
     configure_terminal(&original);
 
-	bool scramble = true;
-	if (argc > 1) {
-		if (strcmp(argv[1], "--noscramble") == 0) {
-			scramble = false;
-		}
-	}
-
 	printf("Press space to start inspection or 'q' to quit.\n");
 
 	bool skip_scramble = false;
@@ -122,7 +115,7 @@ void timer(int inspection) {
             ns = end.tv_nsec - start.tv_nsec;
             elapsed = sec + ns * 1e-9;
 
-            printf("%.2fs\n", elapsed);
+            printf("%.3fs\n", elapsed);
             break;
         }
     }
