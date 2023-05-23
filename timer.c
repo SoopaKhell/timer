@@ -111,7 +111,7 @@ void timer(int inspection) {
     clock_gettime(CLOCK_MONOTONIC, &start);
 
     while (1) {
-        if (getchar() == ' ') {
+        if (getchar()) {
             clock_gettime(CLOCK_MONOTONIC, &end);
             sec = end.tv_sec - start.tv_sec;
             ns = end.tv_nsec - start.tv_nsec;
