@@ -32,23 +32,21 @@ int main(int argc, char *argv[]) {
     struct termios original;
     configure_terminal(&original);
 
-	bool scramble = false;
+	bool scramble = true;
 	if (argc > 1) {
-		if (strcmp(argv[1], "--scramble") == 0) {
-			scramble = true;
-			printf("Press space for scramble or 'q' to quit.\n");
+		if (strcmp(argv[1], "--noscramble") == 0) {
+			scramble = false;
 		}
-	} else {
-		printf("Press space to start inspection or 'q' to quit.\n");
 	}
 
+	printf("Press space to start inspection or 'q' to quit.\n");
+
     while (1) {
+		if (scramble) {
+			print_scramble(20);
+		}
         char input = getchar();
         if (input == ' ') {
-			if (scramble) {
-				print_scramble(20);
-				input = getchar();
-			}
             timer(1);
         } else if (input == 'q') {
             break;
