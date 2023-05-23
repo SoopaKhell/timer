@@ -41,16 +41,21 @@ int main(int argc, char *argv[]) {
 
 	printf("Press space to start inspection or 'q' to quit.\n");
 
-    while (1) {
-		if (scramble) {
+	bool skip_scramble = false;
+    while (true) {
+		if (!skip_scramble) {
 			print_scramble(20);
 		}
-        char input = getchar();
+
+		char input = getchar();
         if (input == ' ') {
-            timer(1);
+			timer(1);
+			skip_scramble = false;
         } else if (input == 'q') {
             break;
-        }
+        } else {
+			skip_scramble = true;
+		}
     }
 
     reset_terminal(original);
